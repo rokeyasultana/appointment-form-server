@@ -10,22 +10,22 @@ app.use(cors());
 app.use(express.json());
 
 // mongodb
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.niidmnq.mongodb.net/?retryWrites=true&w=majority`;
+
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.wytyd6s.mongodb.net/?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-
 
 console.log(uri);
 async function run (){
 try{
     
-    const appointmentCollection = client.db('appointment-form').collection('appointment');
+    const appointmentCollection = client.db('appointment-form').collection('appointments');
 
 
     //post appointment
     app.post('/appointment', async (req, res) => {
-      appointment = req.body;
-      const result = await appointmentCollection.insertOne(appointment)
+      appointments = req.body;
+      const result = await appointmentCollection.insertOne(appointments)
       res.send(result);
    }); 
 
